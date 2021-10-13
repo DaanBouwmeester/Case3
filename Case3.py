@@ -275,4 +275,24 @@ fig.update_layout(xaxis_title='Years',
                  title='Linechart of the number of vehicles per month')
 st.plotly_chart(fig)
 
+Tesla = pd.read_csv('TESLA')
 
+#Tesla = mergeddf[mergeddf['CarBrand']=='TESLA']
+#Tesla.head()
+
+fig = px.histogram(Tesla, x='Type', 
+                   title='The different types of Tesla cars').update_xaxes(categoryorder='total descending')
+st.plotly_chart(fig)
+
+color_map = {"MODEL 3" : 'rgb(53,201,132)', "MODEL S" : 'rgb(196,201,67)', "MODEL X" : 'rgb(149,81,202)', "MODEL Y" : 'rgb(140,71,150)',"ROADSTER" : 'rgb(201,90,84)'}
+fig = px.box(data_frame=Tesla, x=Tesla['Type'], y='Catalogusprijs', 
+             color='Type', 
+             color_discrete_map=color_map, 
+             category_orders={'Type':['MODEL 3', 'MODEL S', 'MODEL X', 'MODEL Y', 'ROADSTER']},
+             labels={"Type":"Type"})
+fig.update_xaxes(title_text = 'Type Tesla')
+fig.update_yaxes(title_text = 'Price')
+fig.update_layout(title_text = "Boxplots of price per type Tesla")
+fig.update_traces(width=0.3)
+    
+st.plotly_chart(fig)
