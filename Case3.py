@@ -57,14 +57,15 @@ dropdown_buttons = [
 
 float_annotation = {'xref': 'paper', 'yref': 'paper',
                     'x': 0.95, 'y': 0.95,'showarrow': False,
-                    'text': 'Median Connected Time is 3.5 hours' + '<br>' + 'Mean Connected Time is 5.2 hours' + '<br>' + 'Median Charge Time is 2.2 hours' + '<br>' + 'Mean Charge Time is 2.3 hours',
+                    'text': 'De mediaan van aangesloten tijd is 3.5 uur' + '<br>' + 'Het gemiddelde van de aangesloten tijd is 5.2 uur' + '<br>' + 'De mediaan van de oplaadtijd tijd is 2.2 uur' + '<br>' + 'Het gemiddelde van de oplaadtijd is 2.3 uur',
                     'font' : {'size': 10,'color': 'black'}
                     }
 
 fig.data[1].visible=False
 fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
-fig.update_layout(xaxis_title='Time in hour',
-                  yaxis_title="Number of observations")
+fig.update_layout(xaxis_title='Tijd in uren',
+                  yaxis_title="Aantal observaties")
+fig.update_layout(title_text = "Histogram van de aangesloten tijd en de oplaadtijd in uren")
 fig.update_layout({'annotations': [float_annotation]})
 
 st.plotly_chart(fig)
