@@ -80,8 +80,8 @@ hist_data = [group_1, group_2]
 group_labels = ['Connected Time', 'Charge Time']
 
 fig = ff.create_distplot(hist_data, group_labels, colors=['blue','red'])
-fig.update_layout({'title': {'text':'Distplot of Charge and Connecting Time'},
-                   'xaxis': {'title': {'text':'Time in hours'}}})
+fig.update_layout({'title': {'text':'Kansdichtheidsplot van aangesloten tijd en oplaadtijd'},
+                   'xaxis': {'title': {'text':'Tijd in uren'}}})
 
 st.plotly_chart(fig)
 
@@ -109,8 +109,9 @@ fig.update_layout({
       'x': 1.3,'y': 0.5,
       'showactive': True, 'active': 0,
       'buttons': my_buttons}]})    
-fig.update_layout(xaxis_title='Time in hour',
-                  yaxis_title="Total energy used in Wh")
+fig.update_layout(xaxis_title='Tijd in uren',
+                  yaxis_title="Totale energie verbruikt in Wh")
+fig.update_layout(title_text='Relatie tussen verbruikte energie en tijd')
 fig.data[1].visible=False
 
 st.plotly_chart(fig)
@@ -171,6 +172,8 @@ dropdown_buttons = [
 fig.data[1].visible=False
 fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
 fig.update_xaxes(tickangle = -45)
+fig.update_layout(yaxis_title="Aantal observaties")
+fig.update_layout(title_text= 'Beheerders van de laadpalen en tarieven)
 st.plotly_chart(fig)
 
 df['LAT'] = df['AddressInfo.Latitude']
@@ -232,7 +235,8 @@ df1["CarBrand"] = df1['Merk'].replace(mappings1)
 
 fig = px.histogram(df1, x='CarBrand', 
                    title='Number of cars per brand',
-                   labels={'CarBrand':'Brand of the car'}).update_xaxes(categoryorder='total descending')
+                   labels={'CarBrand':'Merk van de auto'}).update_xaxes(categoryorder='total descending')
+fig.update_layout(yaxis_title="Aantal observaties")
 st.plotly_chart(fig)
 
 #HIER KOMT CODE VAN DATASET VAN RDW, HIERNA ZULLEN WE EEN NIEUW VERKLEIND CSV BESTAND INLADEN IVM MET DE DATA LIMIET.
@@ -272,9 +276,9 @@ st.plotly_chart(fig)
 df12 = pd.read_csv('RDW')
 
 fig = px.line(x=df12['Year'], y=df12['Kenteken'])
-fig.update_layout(xaxis_title='Years',
-                  yaxis_title="Number of Electric Vehicles",
-                 title='Linechart of the number of vehicles per month')
+fig.update_layout(xaxis_title='Jaren',
+                  yaxis_title="Aantal elektrische autos",
+                 title='Lijngrafiek van het aantal autos per maand')
 st.plotly_chart(fig)
 
 Tesla = pd.read_csv('TESLA')
@@ -284,6 +288,9 @@ Tesla = pd.read_csv('TESLA')
 
 fig = px.histogram(Tesla, x='Type', 
                    title='The different types of Tesla cars').update_xaxes(categoryorder='total descending')
+fig.update_layout(xaxis_title='Type Tesla',
+                  yaxis_title="Aantal observaties",
+                 title='De verschillende types Tesla die verkocht zijn')                  
 st.plotly_chart(fig)
 
 color_map = {"MODEL 3" : 'rgb(53,201,132)', "MODEL S" : 'rgb(196,201,67)', "MODEL X" : 'rgb(149,81,202)', "MODEL Y" : 'rgb(140,71,150)',"ROADSTER" : 'rgb(201,90,84)'}
@@ -293,8 +300,8 @@ fig = px.box(data_frame=Tesla, x=Tesla['Type'], y='Catalogusprijs',
              category_orders={'Type':['MODEL 3', 'MODEL S', 'MODEL X', 'MODEL Y', 'ROADSTER']},
              labels={"Type":"Type"})
 fig.update_xaxes(title_text = 'Type Tesla')
-fig.update_yaxes(title_text = 'Price')
-fig.update_layout(title_text = "Boxplots of price per type Tesla")
+fig.update_yaxes(title_text = 'Catalogusprijs')
+fig.update_layout(title_text = "Boxplots van de catalogusprijs per type Tesla")
 fig.update_traces(width=0.3)
     
 st.plotly_chart(fig)
