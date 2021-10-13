@@ -254,7 +254,7 @@ st.plotly_chart(fig)
 #mergeddf[mergeddf['CarBrand'] == 'TESLA'].value_counts('Handelsbenaming').unique
 
 #mappings2 = {"TESLA MODEL 3":"MODEL 3", "MODEL S 70":"MODEL S", "MODEL S 85":"MODEL S",
-            "MODEL S P85+":"MODEL S", "MODEL3":"MODEL 3", "S 75 D":"MODEL S", "TESLA MODEL S":"MODEL S"}
+#"MODEL S P85+":"MODEL S", "MODEL3":"MODEL 3", "S 75 D":"MODEL S", "TESLA MODEL S":"MODEL S"}
 #mergeddf['Type'] = mergeddf['Handelsbenaming'].replace(mappings2)
 #mergeddf.head()
 
