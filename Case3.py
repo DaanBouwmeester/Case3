@@ -296,3 +296,15 @@ fig.update_layout(title_text = "Boxplots of price per type Tesla")
 fig.update_traces(width=0.3)
     
 st.plotly_chart(fig)
+
+fig = px.scatter(data_frame=laadpaaldata1,
+x='ChargeTime',
+y='TotalEnergy',
+#color='Species',
+trendline='ols',
+labels={'ChargeTime':'Oplaad tijd [h]', 'TotalEnergy':'Totaal verbruikte energie [Wh]'},
+height=600,
+width=1000,
+title='Relatie tussen vebonden tijd en totaal gebruikte energie')
+
+st.plotly_chart(fig)
