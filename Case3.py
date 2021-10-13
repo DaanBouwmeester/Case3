@@ -163,17 +163,16 @@ for col in ['OperatorInfo.Title', 'UsageCost1']:
 dropdown_buttons = [
     {'label': 'Operator', 'method': 'update',
     'args': [{'visible': [True, False]},
-            {'title': 'Operator of Charging Station'}]},
+            {'title': 'Beheerder van de laadpalen'}]},
     {'label': 'Usage Cost', 'method': 'update',
     'args': [{'visible': [False, True]},
-            {'title': 'Usage Cost of Charging Station'}]}]
+            {'title': 'Tarieven van de laadpalen'}]}]
 
 
 fig.data[1].visible=False
 fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
 fig.update_xaxes(tickangle = -45)
 fig.update_layout(yaxis_title="Aantal observaties")
-fig.update_layout(title_text= 'Beheerders van de laadpalen en tarieven')
 st.plotly_chart(fig)
 
 df['LAT'] = df['AddressInfo.Latitude']
@@ -229,16 +228,6 @@ df1 = pd.read_csv('Elektrischdata')
 #df1.groupby("Merk")['Handelsbenaming'].unique()
 #df1["Merk"].unique()
 
-mappings1 = {'TESLA MOTORS':'TESLA', 'BMW I': 'BMW', 'FORD-CNG-TECHNIK':'FORD', 'VW':'VOLKSWAGEN', 'VOLKSWAGEN/ZIMNY':'VOLKSWAGEN',
-            'JAGUAR CARS': 'JAGUAR', 'ZIE BIJZONDERHEDEN':'Nan', 'VW-PORSCHE':'VOLKSWAGEN'}
-df1["CarBrand"] = df1['Merk'].replace(mappings1)
-
-fig = px.histogram(df1, x='CarBrand', 
-                   title='Number of cars per brand',
-                   labels={'CarBrand':'Merk van de auto'}).update_xaxes(categoryorder='total descending')
-fig.update_layout(yaxis_title="Aantal observaties")
-st.plotly_chart(fig)
-
 #HIER KOMT CODE VAN DATASET VAN RDW, HIERNA ZULLEN WE EEN NIEUW VERKLEIND CSV BESTAND INLADEN IVM MET DE DATA LIMIET.
 #DE DATA DIE IS INGELADEN VAN RDW IS DUS SCHOONGEMAAKT EN DAARVAN EEN NIEUW CSV BESTAND GEMAAKT
 
@@ -277,8 +266,18 @@ df12 = pd.read_csv('RDW')
 
 fig = px.line(x=df12['Year'], y=df12['Kenteken'])
 fig.update_layout(xaxis_title='Jaren',
-                  yaxis_title="Aantal elektrische autos",
-                 title='Lijngrafiek van het aantal autos per maand')
+                  yaxis_title="Aantal elektrische auto's",
+                 title="Lijngrafiek van het aantal auto's per maand")
+st.plotly_chart(fig)
+
+mappings1 = {'TESLA MOTORS':'TESLA', 'BMW I': 'BMW', 'FORD-CNG-TECHNIK':'FORD', 'VW':'VOLKSWAGEN', 'VOLKSWAGEN/ZIMNY':'VOLKSWAGEN',
+            'JAGUAR CARS': 'JAGUAR', 'ZIE BIJZONDERHEDEN':'Nan', 'VW-PORSCHE':'VOLKSWAGEN'}
+df1["CarBrand"] = df1['Merk'].replace(mappings1)
+
+fig = px.histogram(df1, x='CarBrand', 
+                   title='Number of cars per brand',
+                   labels={'CarBrand':'Merk van de auto'}).update_xaxes(categoryorder='total descending')
+fig.update_layout(yaxis_title="Aantal observaties")
 st.plotly_chart(fig)
 
 Tesla = pd.read_csv('TESLA')
