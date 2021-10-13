@@ -66,7 +66,7 @@ fig.update_layout(xaxis_title='Time in hour',
                   yaxis_title="Number of observations")
 fig.update_layout({'annotations': [float_annotation]})
 
-st.plotly_graph(fig)
+st.plotly_chart(fig)
 
 
 
