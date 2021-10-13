@@ -68,8 +68,20 @@ fig.update_layout({'annotations': [float_annotation]})
 
 st.plotly_chart(fig)
 
+laadpaaldata1 = laadpaaldata1[laadpaaldata1['ConnectedTime']<=20]
+laadpaaldata1 = laadpaaldata1[laadpaaldata1['ChargeTime']<=6]
 
+group_1 = laadpaaldata1['ConnectedTime']
+group_2 = laadpaaldata1['ChargeTime']
 
+hist_data = [group_1, group_2]
+group_labels = ['Connected Time', 'Charge Time']
+
+fig = ff.create_distplot(hist_data, group_labels, colors=['blue','red'])
+fig.update_layout({'title': {'text':'Distplot of Charge and Connecting Time'},
+                   'xaxis': {'title': {'text':'Time in hours'}}})
+
+st.plotly_chart(fig)
 
 
 
