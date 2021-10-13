@@ -233,6 +233,6 @@ fig = px.histogram(df1, x='CarBrand',
                    labels={'CarBrand':'Brand of the car'}).update_xaxes(categoryorder='total descending')
 st.plotly_chart(fig)
 
-
+#
 
 
