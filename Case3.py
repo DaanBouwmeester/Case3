@@ -173,7 +173,7 @@ fig.data[1].visible=False
 fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
 fig.update_xaxes(tickangle = -45)
 fig.update_layout(yaxis_title="Aantal observaties")
-fig.update_layout(title_text= 'Beheerders van de laadpalen en tarieven)
+fig.update_layout(title_text= 'Beheerders van de laadpalen en tarieven')
 st.plotly_chart(fig)
 
 df['LAT'] = df['AddressInfo.Latitude']
