@@ -180,7 +180,7 @@ m = folium.Map(location = [52.0893191, 5.1101691],
 for row in df.iterrows():
     row_values = row[1]
     location = [row_values['LAT'], row_values['LNG']]
-    marker = folium.Marker(location = location,
+    marker = folium.CircleMarker(location = location,
                          popup = row_values['AddressInfo.AddressLine1'])
     marker.add_to(m)
 
