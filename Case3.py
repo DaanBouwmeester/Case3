@@ -233,6 +233,12 @@ fig = px.histogram(df1, x='CarBrand',
                    labels={'CarBrand':'Brand of the car'}).update_xaxes(categoryorder='total descending')
 st.plotly_chart(fig)
 
-#
+df12 = pd.read_csv('RDW')
+
+fig = px.line(x=df12['Year'], y=df1['Kenteken'])
+fig.update_layout(xaxis_title='Years',
+                  yaxis_title="Number of Electric Vehicles",
+                 title='Linechart of the number of vehicles per month')
+st.plotly_chart(fig)
 
 
