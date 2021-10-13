@@ -116,6 +116,11 @@ fig.data[1].visible=False
 
 st.plotly_chart(fig)
 
+fig = px.scatter(data_frame=laadpaaldata1, x='ChargeTime', y='TotalEnergy',
+    trendline='ols', labels={'ChargeTime':'Oplaad tijd [h]', 'TotalEnergy':'Totaal verbruikte energie [Wh]'}, height=600, width=1000, title='Relatie tussen vebonden tijd en totaal gebruikte energie')
+
+st.plotly_chart(fig)
+
 url = 'https://api.openchargemap.io/v3/poi/?output=json&countrycode=NL&maxresults=3000&key=74e5c90d-3e4f-4bbe-b506-233af06f55ca'
 r = requests.get(url)
 datatxt = r.text
@@ -303,9 +308,4 @@ fig.update_yaxes(title_text = 'Catalogusprijs')
 fig.update_layout(title_text = "Boxplots van de catalogusprijs per type Tesla")
 fig.update_traces(width=0.3)
     
-st.plotly_chart(fig)
-
-fig = px.scatter(data_frame=laadpaaldata1, x='ChargeTime', y='TotalEnergy',
-    trendline='ols', labels={'ChargeTime':'Oplaad tijd [h]', 'TotalEnergy':'Totaal verbruikte energie [Wh]'}, height=600, width=1000, title='Relatie tussen vebonden tijd en totaal gebruikte energie')
-
 st.plotly_chart(fig)
