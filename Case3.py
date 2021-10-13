@@ -171,19 +171,20 @@ fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showact
 fig.update_xaxes(tickangle = -45)
 st.plotly_chart(fig)
 
-#df['AddressInfo.StateOrProvince'].unique()
+df['LAT'] = df['AddressInfo.Latitude']
+df['LNG'] = df['AddressInfo.Longitude']
 
-mapping = {'South Holland': 'Zuid-Holland', 'None': 'Nan','North Brabant':'Noord-Brabant',
-          'North Holland': 'Noord-Holland', 'NH': 'Noord-Holland', 'North-Holland':'Noord-Holland',
-          'UT':'Utrecht', 'Holandia Północna':'Noord-Holland', 'Seeland':'Zeeland', 'ZH':'Zuid-Holland',
-          'Nordholland':'Noord-Holland','Stellendam':'Zuid-Holland', '':'Nan', 'FRL':'Friesland','Noord Holand':'Noord-Holland',
-          'Noord Brabant':'Noord-Brabant', 'Stadsregio Arnhem Nijmegen':'Gelderland', 'Zuid-Holland':'Zuid-Holland'}
-df['Provincie'] = df['AddressInfo.StateOrProvince'].replace(mapping)
+m = folium.Map(location = [52.0893191, 5.1101691], 
+               zoom_start = 7)
 
-fig = px.histogram(df, x='Provincie', 
-                   title='Number of charging stations per province',
-                  labels=dict(x='Province')).update_xaxes(categoryorder='total descending')
-st.plotly_chart(fig)
+for row in df.iterrows():
+    row_values = row[1]
+    location = [row_values['LAT'], row_values['LNG']]
+    marker = folium.Marker(location = location,
+                         popup = row_values['AddressInfo.AddressLine1'])
+    marker.add_to(m)
+
+folium_static(m)
 
 
 
