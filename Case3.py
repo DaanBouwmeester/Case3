@@ -233,6 +233,40 @@ fig = px.histogram(df1, x='CarBrand',
                    labels={'CarBrand':'Brand of the car'}).update_xaxes(categoryorder='total descending')
 st.plotly_chart(fig)
 
+#HIER KOMT CODE VAN DATASET VAN RDW, HIERNA ZULLEN WE EEN NIEUW VERKLEIND CSV BESTAND INLADEN IVM MET DE DATA LIMIET.
+#DE DATA DIE IS INGELADEN VAN RDW IS DUS SCHOONGEMAAKT EN DAARVAN EEN NIEUW CSV BESTAND GEMAAKT
+
+#EV = pd.read_csv("EV_vanaf_2009.csv")
+#EV.head()
+#EV = EV.assign(Datum = pd.to_datetime(EV['Datum tenaamstelling'], format='%Y%m%d'))
+#EV['Datum'].head
+
+#behouden = ['Kenteken', 'Datum']
+#newdf = EV[behouden]
+#newdf.head()
+
+#mergeddf = pd.merge(df1, newdf, on="Kenteken")
+#mergeddf.head()
+
+#del mergeddf['Merk']
+#mergeddf.info()
+
+#mergeddf[mergeddf['CarBrand'] == 'TESLA'].value_counts('Handelsbenaming').unique
+
+#mappings2 = {"TESLA MODEL 3":"MODEL 3", "MODEL S 70":"MODEL S", "MODEL S 85":"MODEL S",
+            "MODEL S P85+":"MODEL S", "MODEL3":"MODEL 3", "S 75 D":"MODEL S", "TESLA MODEL S":"MODEL S"}
+#mergeddf['Type'] = mergeddf['Handelsbenaming'].replace(mappings2)
+#mergeddf.head()
+
+#del mergeddf['Handelsbenaming']
+#mergeddf.head()
+
+#mergeddf['Year'] = pd.DatetimeIndex(mergeddf['Datum']).year
+#newdf = mergeddf.groupby('Year').count()
+#df12 = pd.DataFrame(newdf)
+#df12.reset_index(inplace=True)
+#df12.to_csv('RDW')
+
 df12 = pd.read_csv('RDW')
 
 fig = px.line(x=df12['Year'], y=df12['Kenteken'])
