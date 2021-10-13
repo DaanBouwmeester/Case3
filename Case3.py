@@ -283,6 +283,7 @@ fig = px.histogram(df1, x='CarBrand',
                    title='Number of cars per brand',
                    labels={'CarBrand':'Merk van de auto'}).update_xaxes(categoryorder='total descending')
 fig.update_layout(yaxis_title="Aantal observaties")
+fig.update_xaxes(tickangle = -45)
 st.plotly_chart(fig)
 
 Tesla = pd.read_csv('TESLA')
