@@ -14,3 +14,15 @@ st.write("Hello")
 
 laadpaaldata = pd.read_csv('laadpaaldata.csv')
 pd.set_option('display.max_columns', None)
+
+#laadpaaldata.head() 
+#laadpaaldata.info()
+#laadpaaldata.describe()
+
+#plt.hist(laadpaaldata['ConnectedTime'], bins = 50)
+#plt.hist(laadpaaldata['TotalEnergy'], bins=50)
+#plt.hist(laadpaaldata['ChargeTime'], bins=50)
+#plt.hist(laadpaaldata['MaxPower'], bins=50)
+
+laadpaaldata1 = laadpaaldata[laadpaaldata['ChargeTime'] >= 0 ]
+#laadpaaldata1.describe()
