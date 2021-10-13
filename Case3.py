@@ -234,3 +234,4 @@ fig = px.histogram(df1, x='CarBrand',
 st.plotly_chart(fig)
 
 
+
