@@ -83,5 +83,38 @@ fig.update_layout({'title': {'text':'Distplot of Charge and Connecting Time'},
 
 st.plotly_chart(fig)
 
+#laadpaaldata1['ConnectedTime'].mean()
+#laadpaaldata1['ChargeTime'].mean()
+#laadpaaldata1['Percentage opladen'].mean()
+
+fig = go.Figure()
+for col in ['ConnectedTime', 'ChargeTime']:
+    fig.add_trace(go.Scatter(x=laadpaaldata1[col], y=laadpaaldata1['TotalEnergy'], mode='markers'))
+
+my_buttons = [{'label': 'Connected Time', 'method': 'update',
+    'args': [{'visible': [True, False, False]},
+            {'title': 'Connected Time'}]},
+    {'label': 'Charge Time', 'method': 'update',
+    'args': [{'visible': [False, True, False]},
+            {'title': 'Charge Time'}]},
+    {'label': 'Combined', 'method': 'update',
+    'args': [{'visible': [True, True, True]},
+            {'title': 'Combined'}]}]
+
+fig.update_layout({
+    'updatemenus': [{
+      'type':'buttons','direction': 'down',
+      'x': 1.3,'y': 0.5,
+      'showactive': True, 'active': 0,
+      'buttons': my_buttons}]})    
+fig.update_layout(xaxis_title='Time in hour',
+                  yaxis_title="Total energy used in Wh")
+fig.data[1].visible=False
+
+st.plotly_chart(fig)
+
+
+
+
 
 
