@@ -169,7 +169,7 @@ dropdown_buttons = [
 fig.data[1].visible=False
 fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
 fig.update_xaxes(tickangle = -45)
-st.plotly_graph(fig)
+st.plotly_chart(fig)
 
 
 
