@@ -49,12 +49,12 @@ for col in ['ConnectedTime', 'ChargeTime']:
 
 
 dropdown_buttons = [
-    {'label': 'Connected Time', 'method': 'update',
+    {'label': 'Tijd aangesloten', 'method': 'update',
     'args': [{'visible': [True, False]},
-            {'title': 'Connected Time'}]},
-    {'label': 'Charge Time', 'method': 'update',
+            {'title': 'Tijd aangesloten'}]},
+    {'label': 'Oplaadtijd', 'method': 'update',
     'args': [{'visible': [False, True]},
-            {'title': 'Charge Time'}]}]
+            {'title': 'Oplaadtijd'}]}]
 
 float_annotation = {'xref': 'paper', 'yref': 'paper',
                     'x': 0.95, 'y': 0.95,'showarrow': False,
@@ -94,15 +94,15 @@ fig = go.Figure()
 for col in ['ConnectedTime', 'ChargeTime']:
     fig.add_trace(go.Scatter(x=laadpaaldata1[col], y=laadpaaldata1['TotalEnergy'], mode='markers'))
 
-my_buttons = [{'label': 'Connected Time', 'method': 'update',
+my_buttons = [{'label': 'Tijd aangesloten', 'method': 'update',
     'args': [{'visible': [True, False, False]},
-            {'title': 'Connected Time'}]},
-    {'label': 'Charge Time', 'method': 'update',
+            {'title': 'Tijd aangesloten'}]},
+    {'label': 'Oplaadtijd', 'method': 'update',
     'args': [{'visible': [False, True, False]},
-            {'title': 'Charge Time'}]},
-    {'label': 'Combined', 'method': 'update',
+            {'title': 'Oplaadtijd'}]},
+    {'label': 'Samengevoegd', 'method': 'update',
     'args': [{'visible': [True, True, True]},
-            {'title': 'Combined'}]}]
+            {'title': 'Samengevoegd'}]}]
 
 fig.update_layout({
     'updatemenus': [{
