@@ -186,7 +186,51 @@ for row in df.iterrows():
 
 folium_static(m)
 
+#HIER KOMT CODE VAN DATASET VAN RDW, HIERNA ZULLEN WE EEN NIEUW VERKLEIND CSV BESTAND INLADEN IVM MET DE DATA LIMIET.
+#DE DATA DIE IS INGELADEN VAN RDW IS DUS SCHOONGEMAAKT EN DAARVAN EEN NIEUW CSV BESTAND GEMAAKT
 
+#Elektrisch = pd.read_csv('Elektrische_voertuigen.csv')
+#Elektrisch.head()
+#Elektrisch.info()
+#Elektrisch.describe()
 
+#plt.hist(Elektrisch['Massa rijklaar'], bins = 40)
+#plt.scatter(y=Elektrisch['Massa rijklaar'], x=Elektrisch['Massa ledig voertuig'])
+
+#Elektrisch1 = Elektrisch[Elektrisch['Massa rijklaar'] > 750]
+#Elektrisch1['Massa rijklaar'].hist(bins = 40)
+#plt.show()
+
+#pd.isna(Elektrisch1['Catalogusprijs']).sum()
+#Elektrisch1['Catalogusprijs'].fillna(Elektrisch['Catalogusprijs'].mean(), inplace=True)
+#data = ['Kenteken','Merk', 'Handelsbenaming', 'Inrichting', 'Eerste kleur', 'Massa rijklaar', 'Zuinigheidslabel', 'Catalogusprijs'] 
+#df = Elektrisch1[data]
+
+#pd.isna(df['Catalogusprijs']).sum()
+#df['Zuinigheidslabel'].fillna(('Onbekend'), inplace=True)
+#df['Zuinigheidslabel'].value_counts().sort_values()
+#del df['Zuinigheidslabel']
+
+#df['Catalogusprijs'].max()
+#df1 = df[df['Catalogusprijs'] <= 200000]
+#df1.info()
+
+df1 = pd.read_csv('Elektrischdata')
+#plt.hist(df1['Catalogusprijs'], bins=100)
+
+#df1['Eerste kleur'].value_counts()
+#df1['Inrichting'].value_counts()
+
+#df1.groupby("Merk")['Handelsbenaming'].unique()
+#df1["Merk"].unique()
+
+mappings1 = {'TESLA MOTORS':'TESLA', 'BMW I': 'BMW', 'FORD-CNG-TECHNIK':'FORD', 'VW':'VOLKSWAGEN', 'VOLKSWAGEN/ZIMNY':'VOLKSWAGEN',
+            'JAGUAR CARS': 'JAGUAR', 'ZIE BIJZONDERHEDEN':'Nan', 'VW-PORSCHE':'VOLKSWAGEN'}
+df1["CarBrand"] = df1['Merk'].replace(mappings1)
+
+fig = px.histogram(df1, x='CarBrand', 
+                   title='Number of cars per brand',
+                   labels={'CarBrand':'Brand of the car'}).update_xaxes(categoryorder='total descending')
+st.plotly_chart(fig)
 
 
