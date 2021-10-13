@@ -11,3 +11,6 @@ import json
 import plotly.figure_factory as ff
 
 st.write("Hello")
+
+laadpaaldata = pd.read_csv('laadpaaldata.csv')
+pd.set_option('display.max_columns', None)
