@@ -190,7 +190,7 @@ for row in df.iterrows():
     row_values = row[1]
     location = [row_values['LAT'], row_values['LNG']]
     marker = folium.CircleMarker(location = location,
-                         popup = row_values['AddressInfo.AddressLine1'])
+                         popup = row_values['AddressInfo.AddressLine1'], color='aquamarine')
     marker.add_to(m)
 
 folium_static(m)
