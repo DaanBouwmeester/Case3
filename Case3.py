@@ -11,6 +11,7 @@ import json
 import plotly.figure_factory as ff
 import statsmodels.api as sm
 
+st.sidebar.title(“Selector”)
 st.title("Laadpaal Dashboard")
 
 laadpaaldata = pd.read_csv('laadpaaldata.csv')
