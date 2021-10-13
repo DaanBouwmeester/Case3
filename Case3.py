@@ -11,7 +11,7 @@ import json
 import plotly.figure_factory as ff
 import statsmodels.api as sm
 
-st.title("Laadpaal Dashboard")
+st.title("Dashboard over Elektrische auto's en laadpalen")
 st.text("Welkom bij ons fantastische dashboard")
 
 laadpaaldata = pd.read_csv('laadpaaldata.csv')
@@ -281,7 +281,7 @@ mappings1 = {'TESLA MOTORS':'TESLA', 'BMW I': 'BMW', 'FORD-CNG-TECHNIK':'FORD', 
 df1["CarBrand"] = df1['Merk'].replace(mappings1)
 
 fig = px.histogram(df1, x='CarBrand', 
-                   title='Number of cars per brand',
+                   title="Aantal auto's per merk",
                    labels={'CarBrand':'Merk van de auto'}).update_xaxes(categoryorder='total descending')
 fig.update_layout(yaxis_title="Aantal observaties")
 fig.update_xaxes(tickangle = -45)
@@ -311,3 +311,5 @@ fig.update_layout(title_text = "Boxplots van de catalogusprijs per type Tesla")
 fig.update_traces(width=0.3)
     
 st.plotly_chart(fig)
+
+st.text("Bedankt voor het bekijken van dit dashboard over laadpalen en elektrische autos')
