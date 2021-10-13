@@ -113,7 +113,7 @@ fig.data[1].visible=False
 
 st.plotly_chart(fig)
 
-url = 'https://api.openchargemap.io/v3/poi/?output=json&countrycode=NL&maxresults=10000&key=74e5c90d-3e4f-4bbe-b506-233af06f55ca'
+url = 'https://api.openchargemap.io/v3/poi/?output=json&countrycode=NL&maxresults=3000&key=74e5c90d-3e4f-4bbe-b506-233af06f55ca'
 r = requests.get(url)
 datatxt = r.text
 datajson = json.loads(datatxt)
