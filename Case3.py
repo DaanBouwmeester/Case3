@@ -11,7 +11,7 @@ import json
 import plotly.figure_factory as ff
 import statsmodels.api as sm
 
-st.write("Hello")
+st.title("Laadpaal Dashboard")
 
 laadpaaldata = pd.read_csv('laadpaaldata.csv')
 pd.set_option('display.max_columns', None)
