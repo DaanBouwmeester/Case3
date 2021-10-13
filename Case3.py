@@ -32,6 +32,7 @@ laadpaaldata1 = laadpaaldata[laadpaaldata['ChargeTime'] >= 0 ]
 #laadpaaldata1.describe()
 #plt.hist(laadpaaldata1['ChargeTime'], bins=50)
 
+
 laadpaaldata1 = laadpaaldata1[laadpaaldata1['ConnectedTime']<=50]
 laadpaaldata1 = laadpaaldata1[laadpaaldata1['ChargeTime']<=15]
 laadpaaldata1['Percentage opladen'] = laadpaaldata1['ChargeTime'] / laadpaaldata1['ConnectedTime']
