@@ -113,6 +113,63 @@ fig.data[1].visible=False
 
 st.plotly_chart(fig)
 
+url = 'https://api.openchargemap.io/v3/poi/?output=json&countrycode=NL&maxresults=10000&key=74e5c90d-3e4f-4bbe-b506-233af06f55ca'
+r = requests.get(url)
+datatxt = r.text
+datajson = json.loads(datatxt)
+
+df = pd.json_normalize(datajson)
+#df.head()
+
+#df['AddressInfo.Country.Title'].unique()
+#pd.set_option('max_columns', None)
+
+labels = ['UserComments', 'PercentageSimilarity','MediaItems','IsRecentlyVerified','DateLastVerified',
+         'UUID','ParentChargePointID','DataProviderID','DataProvidersReference','OperatorID',
+         'OperatorsReference','UsageTypeID','GeneralComments','DatePlanned','DateLastConfirmed','MetadataValues',
+         'SubmissionStatusTypeID','DataProvider.WebsiteURL','DataProvider.Comments','DataProvider.DataProviderStatusType.IsProviderEnabled',
+         'DataProvider.DataProviderStatusType.ID','DataProvider.DataProviderStatusType.Title',
+         'DataProvider.IsRestrictedEdit','DataProvider.IsOpenDataLicensed','DataProvider.IsApprovedImport',
+         'DataProvider.License','DataProvider.DateLastImported','DataProvider.ID','DataProvider.Title',
+         'OperatorInfo.Comments','OperatorInfo.PhonePrimaryContact','OperatorInfo.PhoneSecondaryContact',
+         'OperatorInfo.IsPrivateIndividual','OperatorInfo.AddressInfo','OperatorInfo.BookingURL',
+         'OperatorInfo.ContactEmail','OperatorInfo.FaultReportEmail','OperatorInfo.IsRestrictedEdit',
+         'UsageType','OperatorInfo','AddressInfo.DistanceUnit','AddressInfo.Distance','AddressInfo.AccessComments',
+         'AddressInfo.ContactEmail','AddressInfo.ContactTelephone2','AddressInfo.ContactTelephone1',
+         'OperatorInfo.WebsiteURL','OperatorInfo.ID','UsageType.ID','StatusType.IsUserSelectable',
+         'StatusType.ID','SubmissionStatus.IsLive','SubmissionStatus.ID','SubmissionStatus.Title',
+         'AddressInfo.CountryID','AddressInfo.Country.ContinentCode','AddressInfo.Country.ID',
+         'AddressInfo.Country.ISOCode','AddressInfo.RelatedURL','Connections']
+df = df.drop(columns=labels)
+
+#df.head(30)
+
+#df['NumberOfPoints'].sum()
+#df['OperatorInfo.Title'].unique()
+
+#df['UsageCost'].unique()
+mappings = {'free':'Free',  '':'Unknown', 'Paod':'Paid','unknown':'Unknown','free at the bicycle chargeplace':'Free',
+           'Gratis':'Free', 'gratis':'Free'}
+df['UsageCost1'] = df['UsageCost'].replace(mappings)
+
+fig = go.Figure()
+for col in ['OperatorInfo.Title', 'UsageCost1']:
+    fig.add_trace(go.Histogram(x=df[col]))
+
+
+dropdown_buttons = [
+    {'label': 'Operator', 'method': 'update',
+    'args': [{'visible': [True, False]},
+            {'title': 'Operator of Charging Station'}]},
+    {'label': 'Usage Cost', 'method': 'update',
+    'args': [{'visible': [False, True]},
+            {'title': 'Usage Cost of Charging Station'}]}]
+
+
+fig.data[1].visible=False
+fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showactive': True,'active': 0,'buttons': dropdown_buttons}]})
+fig.update_xaxes(tickangle = -45)
+st.plotly_graph(fig)
 
 
 
