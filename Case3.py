@@ -435,4 +435,4 @@ fig.update_traces(width=0.3)
     
 st.plotly_chart(fig)
 
-st.text("Bedankt voor het bekijken van dit dashboard over laadpalen en elektrische autos")
+st.text("Bedankt voor het bekijken van dit dashboard over laadpalen en elektrische auto's")
