@@ -295,7 +295,7 @@ Tesla = pd.read_csv('TESLA')
 #Tesla = mergeddf[mergeddf['CarBrand']=='TESLA']
 #Tesla.head()
 
-fig = px.histogram(Tesla, x='Type', color='Type' 
+fig = px.histogram(Tesla, x='Type', color='Type', 
                    title='The different types of Tesla cars').update_xaxes(categoryorder='total descending')
 fig.update_layout(xaxis_title='Type Tesla',
                   yaxis_title="Aantal observaties",
