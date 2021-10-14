@@ -335,6 +335,15 @@ df1 = pd.read_csv('Elektrischdata')
 #df12 = pd.DataFrame(newdf)
 #df12.reset_index(inplace=True)
 #df12.to_csv('RDW')
+st.header('Open data van RDW')
+st.subheader("Lijngrafiek van het aantal verkochte auto's per maand")
+st.text('''Deze lijngrafiek geeft het aantal elektrische auto's per maand in Nederland. 
+Te zien is dat vanaf 2017 de grafiek exponentieel is gestegen, terwijl het van 2010 tot 
+2017 eigenlijk bijna niet steeg. Dit heeft te maken met de populariteit van de elektrische 
+auto's. Elon Musk zal met Tesla hier ongetwijfeld ook een grote rol in hebben gespeeld. 
+In 2020 zat er een kleine daling, dit komt waarschijnlijk door de gevolgen van covid-19. 
+We verwachten verder dat de lijngrafiek nog enorm zal blijven stijgen de komende jaren.''')
+
 
 df12 = pd.read_csv('RDW')
 
@@ -348,6 +357,14 @@ mappings1 = {'TESLA MOTORS':'TESLA', 'BMW I': 'BMW', 'FORD-CNG-TECHNIK':'FORD', 
             'JAGUAR CARS': 'JAGUAR', 'ZIE BIJZONDERHEDEN':'Nan', 'VW-PORSCHE':'VOLKSWAGEN'}
 df1["CarBrand"] = df1['Merk'].replace(mappings1)
 
+st.subheader("Aantal elektrische auto's per merk")
+st.text('''Op deze histogram is het aantal auto’s per merk te zien. Hier valt 
+op dat het merk ‘Tesla’ erg populair is. Dit merk is ten opzichte van de nummer 
+twee verdubbeld. Ook is te zien dat het merk ‘DS’ het laatste merk is op de 
+histogram met een totale observatie van 380. Na dit merk hebben de andere merken 
+een observatie 0 aantallen. Dit gaat om de helft van de totale auto merken in de 
+lijst.''')
+
 fig = px.histogram(df1, x='CarBrand', 
                    title="Aantal auto's per merk",
                    labels={'CarBrand':'Merk van de auto'}).update_xaxes(categoryorder='total descending')
@@ -360,12 +377,28 @@ Tesla = pd.read_csv('TESLA')
 #Tesla = mergeddf[mergeddf['CarBrand']=='TESLA']
 #Tesla.head()
 
+st.subheader("De verschillende Tesla's die verkocht zijn")
+st.text('''In het onderstaande histogram is te zien, dat we observaties hebben 
+van 5 verschillende typen Tesla modellen. De meest populaire Tesla is de 
+Model 3; deze is meer dan 2,5 keer zo populair als de nummer 2, de Model S. 
+Van de Model X zijn er ook nog redelijk wat observaties. De Model Y en de 
+Roadster zorgen eigenlijk voor zeer weinig observaties. Deze modellen zijn 
+dus een stuk minder populair dan de andere 3 Tesla modellen.''')
+
 fig = px.histogram(Tesla, x='Type', color='Type', 
                    title='The different types of Tesla cars').update_xaxes(categoryorder='total descending')
 fig.update_layout(xaxis_title='Type Tesla',
                   yaxis_title="Aantal observaties",
                  title='De verschillende types Tesla die verkocht zijn')                  
 st.plotly_chart(fig)
+
+st.subheader("Boxplots met catalogusprijzen van de verschillende Tesla's")
+st.text('''In dit figuur zijn boxplotten te zien van vijf verschillende soorten 
+Tesla modellen. Op de y-as is de catalogusprijs te vinden en op de x-as het 
+type model. Model 3 heeft een mediaan van 58.98K, Model S van 100.4K, 
+Model X 127.05K, Model Y 66.3K en de Roadster een mediaan van 112.8K. 
+Een mediaan is het middelste getal en hiermee kunnen we zien dat Model X 
+de hoogste catalogus prijs heeft.''')
 
 color_map = {"MODEL 3" : 'rgb(53,201,132)', "MODEL S" : 'rgb(196,201,67)', "MODEL X" : 'rgb(149,81,202)', "MODEL Y" : 'rgb(140,71,150)',"ROADSTER" : 'rgb(201,90,84)'}
 fig = px.box(data_frame=Tesla, x=Tesla['Type'], y='Catalogusprijs', 
