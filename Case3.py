@@ -121,7 +121,7 @@ fig.data[1].visible=False
 st.plotly_chart(fig)
 
 fig = px.scatter(data_frame=laadpaaldata1, x='ChargeTime', y='TotalEnergy',
-    trendline='ols', trendline_color_override='violet', labels={'ChargeTime':'Oplaadtijd in uren ', 'TotalEnergy':'Totaal verbruikte energie in Wh'}, title='Relatie tussen verbonden tijd en totaal verbruikte energie')
+    trendline='ols', trendline_color_override='violet', labels={'ChargeTime':'Oplaadtijd in uren ', 'TotalEnergy':'Totaal verbruikte energie in Wh'}, title='Relatie tussen Oplaadtijd en totaal verbruikte energie')
 
 st.plotly_chart(fig)
 
