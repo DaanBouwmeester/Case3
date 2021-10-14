@@ -109,7 +109,7 @@ fig.update_layout({'title': {'text':'Kansdichtheidsplot van aangesloten tijd en 
 
 st.plotly_chart(fig)
 
-st.subheader("Scatterplot oplaadtijd en verbonden tijd met verbruikte energie''')
+st.subheader("Scatterplot oplaadtijd en verbonden tijd met verbruikte energie")
              
 st.text('''
 Hier is een spreidingsdiagram te zien. Je kan wisselen tussen 3 spreidingsdiagrammen 
