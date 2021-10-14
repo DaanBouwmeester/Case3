@@ -13,8 +13,8 @@ import statsmodels.api as sm
 
 st.title("Dashboard over Elektrische auto's en laadpalen")
 st.text("Welkom bij ons fantastische dashboard")
-st.header('HELLO')
-st.subheader('Hallo')
+st.header('Laadpaaldata')
+st.subheader('Histogram van de laadtijd')
 
 laadpaaldata = pd.read_csv('laadpaaldata.csv')
 pd.set_option('display.max_columns', None)
