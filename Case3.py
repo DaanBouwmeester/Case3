@@ -1,3 +1,6 @@
+#Alle dingen die niet op het blog hoeven weergegeven te worden, zijn in deze code met een # ervoor geplaatst
+#Dit is zodat de docent kan zien hoe we de data gecleaned hebben. 
+
 import streamlit as st
 import folium
 import geopandas as gpd
