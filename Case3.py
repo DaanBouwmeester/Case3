@@ -58,6 +58,14 @@ laadpaaldata1['Percentage opladen'] = laadpaaldata1['ChargeTime'] / laadpaaldata
 #laadpaaldata1['ConnectedTime'].mean()
 #laadpaaldata1['ChargeTime'].mean()
 
+st.subheader("Kansdichtheidsplot")
+st.text('''Hier zo je een histogram met een benadering van een kansdichtheidsfunctie. 
+Dit laat zien hoe de oplaadtijd en verbonden tijd zijn verdeeld.
+Zo is te zien dat de oplaadtijd over het algemeen hoger is dan de 
+verbonden tijd. De verbonden tijd blijft echter doorgaan, zoals te 
+zien is aan de blauwe lijn op de x-as. Hier is de oplaadtijd al 
+gestopt, zoals te zien op de rode lijn.''')
+
 fig = go.Figure()
 for col in ['ConnectedTime', 'ChargeTime']:
     fig.add_trace(go.Histogram(x=laadpaaldata1[col]))
@@ -101,6 +109,21 @@ fig.update_layout({'title': {'text':'Kansdichtheidsplot van aangesloten tijd en 
 
 st.plotly_chart(fig)
 
+st.subheader("Scatterplot oplaadtijd en verbonden tijd met verbruikte energie''')
+             
+st.text('''
+Hier is een spreidingsdiagram te zien. Je kan wisselen tussen 3 spreidingsdiagrammen 
+aan de hand van de checkboxen rechts onderin. Op het eerste spreidingsdiagram is de 
+verbonden tijd te zien met op de x-as de tijd in uren en op de y-as de totale energie 
+gebruikt in wattuur. Deze eerste diagram laat zien dat het energieverbruik in de eerste 
+5 uren wel aanzienlijk meer is, maar dat het energieverbruik na 5 uur alsnog toehoudt 
+tot 20 uur, zoals te zien aan het einde van de as. De oplaadtijd loopt in de lineaire 
+lijn omhoog en in dit diagram is duidelijk te zien dat het energieverbruik zijn maximum 
+bereikt bij de 5-6 uren. Dit is ook logisch natuurlijk. Het gecombineerde diagram laat 
+mooi zien hoe de verbonden tijd en oplaadtijd samen in een spreidingsdiagram komen. De 
+oplaadtijd piekt rond 5 uren en houdt na 6 uren op. De verbonden tijd blijft tot 20 
+uren doorgaan.''') 
+
 #laadpaaldata1['ConnectedTime'].mean()
 #laadpaaldata1['ChargeTime'].mean()
 #laadpaaldata1['Percentage opladen'].mean()
@@ -132,6 +155,14 @@ fig.data[1].visible=False
 
 st.plotly_chart(fig)
 
+st.subheader('Voorspellingsmodel voor de verbruikte energie')
+             
+st.text('''Dit figuur is een voorspellingsmodel en geeft een scatterplot aan 
+met een lineaire lijn (dit is een trendlijn) erdoorheen. Deze trendlijn geeft 
+de voorspelling weer. Deze trendlijn is gemaakt aan de hand van de functie voor 
+de trendlijn.''')            
+             
+             
 fig = px.scatter(data_frame=laadpaaldata1, x='ChargeTime', y='TotalEnergy',
     trendline='ols', trendline_color_override='violet', labels={'ChargeTime':'Oplaadtijd in uren ', 'TotalEnergy':'Totaal verbruikte energie in Wh'}, title='Relatie tussen oplaadtijd en totaal verbruikte energie')
 
