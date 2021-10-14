@@ -12,20 +12,20 @@ import plotly.figure_factory as ff
 import statsmodels.api as sm
 
 st.title("Dashboard over Elektrische auto's en laadpalen")
-st.text("Welkom op ons dashboard! Op ons dashboard is te zien hoe een gemiddelde bezetting. \
-        van een laadpaal eruit ziet. Daarnaast zijn er nog veel meer interessante dingen over \
-        laadpalen en elektrische voertuigen")
+st.text('''Welkom op ons dashboard! Op ons dashboard is te zien hoe een gemiddelde bezetting. 
+van een laadpaal eruit ziet. Daarnaast zijn er nog veel meer interessante dingen over
+laadpalen en elektrische voertuigen''')
 st.header('Laadpaaldata')
 st.subheader('Histogram van de laadtijd')
-st.text("Hier zie je een aantal observaties op de y-as en de tijd in uren op de x-as van de \
-         verbonden tijd. Hierbij zie je dat de meeste observaties onder de 5 uur zitten, dus \
-         een verbonden tijd van minder dan 5 uur hebben. Dit klopt, want het gemiddelde van \
-         de verbonden tijd is 5,2 uren. De mediaan ligt ook onder de 5 uren. Aan de rechterkant \
-         is het mogelijk om met de check box tussen de twee histogrammen te switchen. Dit kan \
-         voor de verbonden tijd en de oplaadtijd. Bij de histogram van de oplaadtijd zie je dat \
-        de hoogste piek iets na 2 ligt en dat de meeste waarden ook daarvoor liggen. Dit komt \
-        ook overeen met de mediaan en het gemiddelde. Ook zien we dat de verbonden tijd meer \
-        tijd in uren nodig heeft dan de oplaadtijd.")
+st.text('''Hier zie je een aantal observaties op de y-as en de tijd in uren op de x-as van de 
+verbonden tijd. Hierbij zie je dat de meeste observaties onder de 5 uur zitten, dus 
+een verbonden tijd van minder dan 5 uur hebben. Dit klopt, want het gemiddelde van 
+de verbonden tijd is 5,2 uren. De mediaan ligt ook onder de 5 uren. Aan de rechterkant 
+is het mogelijk om met de check box tussen de twee histogrammen te switchen. Dit kan 
+voor de verbonden tijd en de oplaadtijd. Bij de histogram van de oplaadtijd zie je dat 
+de hoogste piek iets na 2 ligt en dat de meeste waarden ook daarvoor liggen. Dit komt 
+ook overeen met de mediaan en het gemiddelde. Ook zien we dat de verbonden tijd meer 
+tijd in uren nodig heeft dan de oplaadtijd.''')
 
 laadpaaldata = pd.read_csv('laadpaaldata.csv')
 pd.set_option('display.max_columns', None)
