@@ -120,16 +120,18 @@ st.subheader("Scatterplot oplaadtijd en verbonden tijd met verbruikte energie")
              
 st.text('''
 Hier is een spreidingsdiagram te zien. Je kan wisselen tussen 3 spreidingsdiagrammen 
-aan de hand van de checkboxen rechts onderin. Op het eerste spreidingsdiagram is de 
-verbonden tijd te zien met op de x-as de tijd in uren en op de y-as de totale energie 
-gebruikt in wattuur. Deze eerste diagram laat zien dat het energieverbruik in de eerste 
-5 uren wel aanzienlijk meer is, maar dat het energieverbruik na 5 uur alsnog toehoudt 
-tot 20 uur, zoals te zien aan het einde van de as. De oplaadtijd loopt in de lineaire 
-lijn omhoog en in dit diagram is duidelijk te zien dat het energieverbruik zijn maximum 
-bereikt bij de 5-6 uren. Dit is ook logisch natuurlijk. Het gecombineerde diagram laat 
-mooi zien hoe de verbonden tijd en oplaadtijd samen in een spreidingsdiagram komen. De 
-oplaadtijd piekt rond 5 uren en houdt na 6 uren op. De verbonden tijd blijft tot 20 
-uren doorgaan.''') 
+aan de hand van de checkboxen rechts onderin. 
+
+Op het eerste spreidingsdiagram is de verbonden tijd te zien met op de x-as de tijd in 
+uren en op de y-as de totale energie gebruikt in wattuur. Deze eerste diagram laat zien 
+dat het energieverbruik in de eerste 5 uren wel aanzienlijk meer is, maar dat het 
+energieverbruik na 5 uur alsnog toehoudt tot 20 uur, zoals te zien aan het einde van de as. 
+De oplaadtijd loopt in de lineaire lijn omhoog en in dit diagram is duidelijk te zien dat 
+het energieverbruik zijn maximum bereikt bij de 5-6 uren. Dit is ook logisch natuurlijk. 
+
+Het gecombineerde diagram laat mooi zien hoe de verbonden tijd en oplaadtijd samen in 
+een spreidingsdiagram komen. De oplaadtijd piekt rond 5 uren en houdt na 6 uren op. 
+De verbonden tijd blijft tot 20 uren doorgaan.''') 
 
 #laadpaaldata1['ConnectedTime'].mean()
 #laadpaaldata1['ChargeTime'].mean()
@@ -164,10 +166,16 @@ st.plotly_chart(fig)
 
 st.subheader('Voorspellingsmodel voor de verbruikte energie')
              
-st.text('''Dit figuur is een voorspellingsmodel en geeft een scatterplot aan 
-met een lineaire lijn (dit is een trendlijn) erdoorheen. Deze trendlijn geeft 
-de voorspelling weer. Deze trendlijn is gemaakt aan de hand van de functie voor 
-de trendlijn.''')            
+st.text('''Dit figuur is een voorspellingsmodel van de verbruikte energie
+op basis van de oplaadtijd in uren. De formule die hierbij hoort is:
+
+Totale verbruikte energie in Wh: (4605,63 * Oplaadtijd) - 1974,4
+
+De waarde van R2 is 0,453, dit geeft aan dat de verbruikte energie voor 
+45% wordt bepaald door de tijd dat de auto aan de laadpaal staat. en 
+geeft een scatterplot aan met een lineaire lijn (dit is een trendlijn) 
+erdoorheen. Deze trendlijn geeft de voorspelling weer. Deze trendlijn is 
+gemaakt aan de hand van de functie voor de trendlijn.''')            
              
              
 fig = px.scatter(data_frame=laadpaaldata1, x='ChargeTime', y='TotalEnergy',
@@ -215,7 +223,9 @@ st.header('OpenChargeMap dataset')
 st.subheader('Beheerders en tarieven van de laadpalen')
 st.text('''Hier is een histogram te zien. Je kan wisselen tussen twee histogrammen 
 aan de hand van de checkboxen aan de rechterkant, namelijk de beheerder histogram 
-en de tarieven histogram. Op de beheerder diagram zijn op de x-as de laadpalen van 
+en de tarieven histogram. 
+
+Op de beheerder diagram zijn op de x-as de laadpalen van 
 verschillende beheerders te zien en op de y-as het aantal laadpalen. Hier is te zien 
 dat de drie grootste aantal laadpalen van de beheerders ‘EV-Box’, ‘EVnetNL’ en 
 ‘The New Motion (BE)’ zijn. De laadpalen van alle andere beheerders zijn veel minder, 
@@ -251,8 +261,10 @@ fig.update_layout(yaxis_title="Aantal observaties")
 st.plotly_chart(fig)
 
 st.subheader('Kaart met laadpunten in Nederland')
-st.text('''Op deze kaart zie je alle laadpalen in Nederland. Als je klikt op een ring 
-(deze staat voor een laadpaal), krijg je het precieze adres te zien in een tekstvakje.''')
+st.text('''Op deze kaart zie je 2000 laadpalen in Nederland. Als je klikt op een ring 
+(deze staat voor een laadpaal), krijg je het precieze adres te zien in een tekstvakje.
+Wat opvalt aan de kaart is dat in de randstad veel meer ringen zijn dan in het noorden
+van Nederland. Ook zie je verder dat in de steden meer ringen zijn dan in andere gebieden''')
 
 
 df['LAT'] = df['AddressInfo.Latitude']
@@ -347,8 +359,9 @@ st.text('''Deze lijngrafiek geeft het aantal elektrische auto's per maand in Ned
 Te zien is dat vanaf 2017 de grafiek exponentieel is gestegen, terwijl het van 2010 tot 
 2017 eigenlijk bijna niet steeg. Dit heeft te maken met de populariteit van de elektrische 
 auto's. Elon Musk zal met Tesla hier ongetwijfeld ook een grote rol in hebben gespeeld. 
-In 2020 zat er een kleine daling, dit komt waarschijnlijk door de gevolgen van covid-19. 
-We verwachten verder dat de lijngrafiek nog enorm zal blijven stijgen de komende jaren.''')
+In 2020 zat er een kleine daling, dit komt waarschijnlijk door de gevolgen van COVID-19. 
+We verwachten verder dat de lijngrafiek nog enorm zal blijven stijgen de komende jaren.
+Dit komt onder andere door overheden die subsidies geven voor elektrische auto's''')
 
 
 df12 = pd.read_csv('RDW')
@@ -369,7 +382,10 @@ op dat het merk ‘Tesla’ erg populair is. Dit merk is ten opzichte van de num
 twee verdubbeld. Ook is te zien dat het merk ‘DS’ het laatste merk is op de 
 histogram met een totale observatie van 380. Na dit merk hebben de andere merken 
 een observatie 0 aantallen. Dit gaat om de helft van de totale auto merken in de 
-lijst.''')
+lijst.
+
+Omdat het merk Tesla zo populair is in deze dataset hebben we nog een
+verdiepende analyse gemaakt over alleen de auto's van Tesla''')
 
 fig = px.histogram(df1, x='CarBrand', 
                    title="Aantal auto's per merk",
@@ -384,12 +400,12 @@ Tesla = pd.read_csv('TESLA')
 #Tesla.head()
 
 st.subheader("De verschillende Tesla's die verkocht zijn")
-st.text('''In het onderstaande histogram is te zien, dat we observaties hebben 
-van 5 verschillende typen Tesla modellen. De meest populaire Tesla is de 
+st.text('''In het onderstaande figuur is te zien, dat we observaties hebben 
+van 5 verschillende types Tesla modellen. De meest populaire Tesla is de 
 Model 3; deze is meer dan 2,5 keer zo populair als de nummer 2, de Model S. 
 Van de Model X zijn er ook nog redelijk wat observaties. De Model Y en de 
-Roadster zorgen eigenlijk voor zeer weinig observaties. Deze modellen zijn 
-dus een stuk minder populair dan de andere 3 Tesla modellen.''')
+Roadster zorgen eigenlijk voor zeer weinig observaties. Dit komt omdat deze
+modellen nog niet uit zijn.''')
 
 fig = px.histogram(Tesla, x='Type', color='Type', 
                    title='The different types of Tesla cars').update_xaxes(categoryorder='total descending')
@@ -404,7 +420,7 @@ Tesla modellen. Op de y-as is de catalogusprijs te vinden en op de x-as het
 type model. Model 3 heeft een mediaan van 58.98K, Model S van 100.4K, 
 Model X 127.05K, Model Y 66.3K en de Roadster een mediaan van 112.8K. 
 Een mediaan is het middelste getal en hiermee kunnen we zien dat Model X 
-de hoogste catalogus prijs heeft.''')
+over het algemeen de hoogste catalogus prijs heeft.''')
 
 color_map = {"MODEL 3" : 'rgb(53,201,132)', "MODEL S" : 'rgb(196,201,67)', "MODEL X" : 'rgb(149,81,202)', "MODEL Y" : 'rgb(140,71,150)',"ROADSTER" : 'rgb(201,90,84)'}
 fig = px.box(data_frame=Tesla, x=Tesla['Type'], y='Catalogusprijs', 
