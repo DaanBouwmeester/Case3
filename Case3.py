@@ -32,7 +32,7 @@ gemiddelde. Ook zien we dat de verbonden tijd meer tijd in uren nodig heeft
 dan de oplaadtijd.
 
 Gemiddeld in deze dataset is het zo dat in 65,7% van de tijd de auto's echt aan het 
-laden zijn terwijl ze aan de laadpaal staan. Dit betekend dat ongveer 35% van de tijd
+laden zijn terwijl ze aan de laadpaal staan. Dit betekend dat ongeveer 35% van de tijd
 de auto aan de laadpaal staat terwijl deze niet meer oplaad. Dit percentage zou naar 
 beneden kunnen om te zorgen dat er meer laadpaal capaciteit is voor andere bestuurders
 van elektrische auto's''')
