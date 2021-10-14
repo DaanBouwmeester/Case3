@@ -58,14 +58,6 @@ laadpaaldata1['Percentage opladen'] = laadpaaldata1['ChargeTime'] / laadpaaldata
 #laadpaaldata1['ConnectedTime'].mean()
 #laadpaaldata1['ChargeTime'].mean()
 
-st.subheader("Kansdichtheidsplot")
-st.text('''Hier zo je een histogram met een benadering van een kansdichtheidsfunctie. 
-Dit laat zien hoe de oplaadtijd en verbonden tijd zijn verdeeld.
-Zo is te zien dat de oplaadtijd over het algemeen hoger is dan de 
-verbonden tijd. De verbonden tijd blijft echter doorgaan, zoals te 
-zien is aan de blauwe lijn op de x-as. Hier is de oplaadtijd al 
-gestopt, zoals te zien op de rode lijn.''')
-
 fig = go.Figure()
 for col in ['ConnectedTime', 'ChargeTime']:
     fig.add_trace(go.Histogram(x=laadpaaldata1[col]))
@@ -102,6 +94,15 @@ group_2 = laadpaaldata1['ChargeTime']
 
 hist_data = [group_1, group_2]
 group_labels = ['Connected Time', 'Charge Time']
+
+st.subheader("Kansdichtheidsplot")
+st.text('''Hier zo je een histogram met een benadering van een kansdichtheidsfunctie. 
+Dit laat zien hoe de oplaadtijd en verbonden tijd zijn verdeeld.
+Zo is te zien dat de oplaadtijd over het algemeen hoger is dan de 
+verbonden tijd. De verbonden tijd blijft echter doorgaan, zoals te 
+zien is aan de blauwe lijn op de x-as. Hier is de oplaadtijd al 
+gestopt, zoals te zien op de rode lijn.''')
+
 
 fig = ff.create_distplot(hist_data, group_labels, colors=['blue','red'])
 fig.update_layout({'title': {'text':'Kansdichtheidsplot van aangesloten tijd en oplaadtijd'},
@@ -203,6 +204,22 @@ df = df.drop(columns=labels)
 #df['OperatorInfo.Title'].unique()
 
 #df['UsageCost'].unique()
+
+st.header('OpenChargeMap dataset')
+st.subheader('Beheerders en tarieven van de laadpalen')
+st.text('''Hier is een histogram te zien. Je kan wisselen tussen twee histogrammen 
+aan de hand van de checkboxen aan de rechterkant, namelijk de beheerder histogram 
+en de tarieven histogram. Op de beheerder diagram zijn op de x-as de laadpalen van 
+verschillende beheerders te zien en op de y-as het aantal laadpalen. Hier is te zien 
+dat de drie grootste aantal laadpalen van de beheerders ‘EV-Box’, ‘EVnetNL’ en 
+‘The New Motion (BE)’ zijn. De laadpalen van alle andere beheerders zijn veel minder, 
+of zelfs geen, ten opzichte van de drie meest gebruikte laadpalen.
+
+Bij de tarieven histogram zijn de tarieven van de laadpalen te zien. Hier valt het 
+op dat de jaarabonnementen het meest worden gebruikt. Ten opzichte van de 
+jaarabonnementen, wordt de rest bijna niet gebruikt. Dit houdt in dat de tarieven 
+niet transparant zijn.''')
+
 mappings = {'free':'Free',  '':'Unknown', 'Paod':'Paid','unknown':'Unknown','free at the bicycle chargeplace':'Free',
            'Gratis':'Free', 'gratis':'Free'}
 df['UsageCost1'] = df['UsageCost'].replace(mappings)
@@ -226,6 +243,11 @@ fig.update_layout({'updatemenus':[{'type': "dropdown",'x': 1.3,'y': 0.5,'showact
 fig.update_xaxes(tickangle = -45)
 fig.update_layout(yaxis_title="Aantal observaties")
 st.plotly_chart(fig)
+
+st.subheader('Kaart met laadpunten in Nederland')
+st.text('''Op deze kaart zie je alle laadpalen in Nederland. Als je klikt op een ring 
+(deze staat voor een laadpaal), krijg je het precieze adres te zien in een tekstvakje.''')
+
 
 df['LAT'] = df['AddressInfo.Latitude']
 df['LNG'] = df['AddressInfo.Longitude']
